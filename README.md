@@ -53,8 +53,8 @@ To find the `.env` variables:
 - perform a POST request (for example, add a time entry)
 - check the request headers. There you will find the `Cookie` and `X-CSRF-TOKEN` headers. Put the values in your `.env`
 - check the request body. In there you will find the `employeeID` field. Put the value in your `.env`
-![browser](img/browser.png)
 
+![browser](img/browser.png)
 
 **Note**: I do not know when do this variables expire. If something does not work, you may need to get them again.
 
