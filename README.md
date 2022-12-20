@@ -10,11 +10,11 @@ This tool alows you to automatically clock-in and out during the current paying 
 
 This tool will get your time entry data for the current period and perform a number of checks on every day:
 
- - is it a public holiday?
- - is it a personal day off?
- - is it on a weekend?
- - is it later than today?
- - are there any existing time entries?
+- is it a public holiday?
+- is it a personal day off?
+- is it on a weekend?
+- is it later than today?
+- are there any existing time entries?
 
 If all of this checks are false, it means we can add a time entry.
 
@@ -51,8 +51,10 @@ To find the `.env` variables:
 
 - Go to BambooHR and open the network tab.
 - perform a POST request (for example, add a time entry)
-- check the response headers. There you will find the `Cookie` and `X-CSRF-TOKEN` headers. Put the values in your `.env`
+- check the request headers. There you will find the `Cookie` and `X-CSRF-TOKEN` headers. Put the values in your `.env`
 - check the request body. In there you will find the `employeeID` field. Put the value in your `.env`
+
+![browser](img/browser.png)
 
 **Note**: I do not know when do this variables expire. If something does not work, you may need to get them again.
 
