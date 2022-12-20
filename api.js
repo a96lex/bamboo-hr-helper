@@ -4,7 +4,7 @@ async function getPastMonthTimes() {
     const response = await fetch("https://crowdmobile.bamboohr.com/timesheet/50", {
         "credentials": "include",
         "headers": {
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:107.0) Gecko/20100101 Firefox/107.0",
+            "User-Agent": Deno.env.get("bamboo_user_agent"),
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.5",
             "Sec-Fetch-Dest": "empty",
@@ -27,7 +27,7 @@ async function addTimeEntry({ day, start, end }) {
     await fetch("https://crowdmobile.bamboohr.com/timesheet/clock/entries", {
         "credentials": "include",
         "headers": {
-            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:107.0) Gecko/20100101 Firefox/107.0",
+            "User-Agent": Deno.env.get("bamboo_user_agent"),
             "Accept": "application/json, text/plain, */*",
             "Accept-Language": "en-US,en;q=0.5",
             "Content-Type": "application/json;charset=utf-8",

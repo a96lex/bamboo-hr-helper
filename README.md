@@ -51,7 +51,7 @@ To find the `.env` variables:
 
 - Go to BambooHR and open the network tab.
 - perform a POST request (for example, add a time entry)
-- check the request headers. There you will find the `Cookie` and `X-CSRF-TOKEN` headers. Put the values in your `.env`
+- check the request headers. There you will find the `Cookie`, `X-CSRF-TOKEN` and `User-Agent` headers. Put the values in your `.env`
 - check the request body. In there you will find the `employeeID` field. Put the value in your `.env`
 
 ![browser](img/browser.png)
