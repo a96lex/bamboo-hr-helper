@@ -1,7 +1,9 @@
 import "https://deno.land/std/dotenv/load.ts";
 
+const urlBase = Deno.env.get("bamboo_url")
+
 async function getPastMonthTimes() {
-    const response = await fetch("https://crowdmobile.bamboohr.com/timesheet/50", {
+    const response = await fetch(urlBase + "/timesheet/50", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
@@ -24,7 +26,7 @@ async function getPastMonthTimes() {
 }
 
 async function addTimeEntry({ day, start, end }) {
-    await fetch("https://crowdmobile.bamboohr.com/timesheet/clock/entries", {
+    await fetch(urlBase + "/timesheet/clock/entries", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
