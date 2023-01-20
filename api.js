@@ -1,7 +1,7 @@
 import "https://deno.land/std/dotenv/load.ts";
 
 async function getPastMonthTimes() {
-    const response = await fetch("https://crowdmobile.bamboohr.com/timesheet/50", {
+    const response = await fetch("https://unith.bamboohr.com/timesheet/61", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
@@ -14,7 +14,7 @@ async function getPastMonthTimes() {
             "Cache-Control": "no-cache",
             "Cookie": Deno.env.get("bamboo_cookie")
         },
-        "referrer": `https://crowdmobile.bamboohr.com/employees/timesheet/?id=${Deno.env.get("bamboo_employee_id")}`,
+        "referrer": `https://unith.bamboohr.com/employees/timesheet/?id=${Deno.env.get("bamboo_employee_id")}`,
         "method": "GET",
         "mode": "cors"
     });
@@ -24,7 +24,7 @@ async function getPastMonthTimes() {
 }
 
 async function addTimeEntry({ day, start, end }) {
-    await fetch("https://crowdmobile.bamboohr.com/timesheet/clock/entries", {
+    await fetch("https://unith.bamboohr.com/timesheet/clock/entries", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
@@ -39,7 +39,7 @@ async function addTimeEntry({ day, start, end }) {
             "X-CSRF-TOKEN": Deno.env.get("bamboo_x_csrf_token"),
             "Cookie": Deno.env.get("bamboo_cookie")
         },
-        "referrer": "https://crowdmobile.bamboohr.com/employees/timesheet/?id=" + Deno.env.get("bamboo_employee_id"),
+        "referrer": "https://unith.bamboohr.com/employees/timesheet/?id=" + Deno.env.get("bamboo_employee_id"),
         "body": "{\"entries\":[{\"id\":null,\"trackingId\":1,\"employeeId\":" + parseInt(Deno.env.get("bamboo_employee_id")) + ",\"date\":\"" + day + "\",\"start\":\"" + start + "\",\"end\":\"" + end + "\",\"note\":\"\",\"projectId\":null,\"taskId\":null}]}",
         "method": "POST",
         "mode": "cors"
