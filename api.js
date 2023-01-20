@@ -1,7 +1,8 @@
 import "https://deno.land/std/dotenv/load.ts";
+import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
-async function getPastMonthTimes() {
-    const response = await fetch("https://unith.bamboohr.com/timesheet/61", {
+async function getTimesheet() {
+    const response = await fetch("https://unith.bamboohr.com/employees/timesheet/?id=280", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
@@ -18,9 +19,11 @@ async function getPastMonthTimes() {
         "method": "GET",
         "mode": "cors"
     });
-    const data = await response.json()
-    const res = data.timesheet.dailyDetails
-    return res
+    const html = await response.text()
+    const doc = new DOMParser().parseFromString(html, "text/html",);
+    const p = doc.querySelector("#js-timesheet-data");
+    const timeDate = JSON.parse(p.innerText)
+    return timeDate.timesheet.dailyDetails
 }
 
 async function addTimeEntry({ day, start, end }) {
@@ -46,4 +49,4 @@ async function addTimeEntry({ day, start, end }) {
     });
 }
 
-export default { getPastMonthTimes, addTimeEntry }
+export default { getPastMonthTimes, addTimeEntry, getTimesheet }
