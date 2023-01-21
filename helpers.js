@@ -32,4 +32,20 @@ function getRandomTimes() {
     }
 }
 
-export default { parseDates, getRandomTimes }
+const requestConfig = {
+    headers: {
+        "User-Agent": Deno.env.get("bamboo_user_agent"),
+        "Accept": "application/json, text/plain, */*",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Content-Type": "application/json;charset=utf-8",
+        "Sec-Fetch-Dest": "empty",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Site": "same-origin",
+        "Pragma": "no-cache",
+        "Cache-Control": "no-cache",
+        "X-CSRF-TOKEN": Deno.env.get("bamboo_x_csrf_token"),
+        "Cookie": Deno.env.get("bamboo_cookie")
+    }
+}
+
+export default { parseDates, getRandomTimes, requestConfig }
