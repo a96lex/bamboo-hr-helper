@@ -1,6 +1,8 @@
 import "https://deno.land/std/dotenv/load.ts";
 import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 
+const urlBase = Deno.env.get("bamboo_url")
+
 async function getTimesheet() {
     const response = await fetch("https://unith.bamboohr.com/employees/timesheet/?id=280", {
         "credentials": "include",
@@ -27,7 +29,7 @@ async function getTimesheet() {
 }
 
 async function addTimeEntry({ day, start, end }) {
-    await fetch("https://unith.bamboohr.com/timesheet/clock/entries", {
+    await fetch(urlBase + "/timesheet/clock/entries", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
