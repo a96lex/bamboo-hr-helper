@@ -15,11 +15,17 @@ async function getTimesheet() {
         mode: "cors",
         referrer
     });
-    const html = await response.text()
-    const doc = new DOMParser().parseFromString(html, "text/html",);
-    const p = doc.querySelector("#js-timesheet-data");
-    const timeDate = JSON.parse(p.innerText)
-    return timeDate.timesheet.dailyDetails
+    try {
+        const html = await response.text()
+        const doc = new DOMParser().parseFromString(html, "text/html",);
+        const p = doc.querySelector("#js-timesheet-data");
+        const timeDate = JSON.parse(p.innerText)
+        return timeDate.timesheet.dailyDetails
+    } catch (error) {
+        console.log("There was an error parsing the server's response.")
+        console.log("Can you double-check yout .env variables?");
+        console.log("full error", { error });
+    }
 }
 
 async function addTimeEntry({ day, start, end }) {
