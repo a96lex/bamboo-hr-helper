@@ -49,4 +49,4 @@ async function addTimeEntry({ day, start, end }) {
     });
 }
 
-export default { getPastMonthTimes, addTimeEntry, getTimesheet }
+export default { addTimeEntry, getTimesheet }
