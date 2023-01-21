@@ -4,7 +4,7 @@ import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
 const urlBase = Deno.env.get("bamboo_url")
 
 async function getTimesheet() {
-    const response = await fetch("https://unith.bamboohr.com/employees/timesheet/?id=280", {
+    const response = await fetch(urlBase + "/employees/timesheet/?id=280", {
         "credentials": "include",
         "headers": {
             "User-Agent": Deno.env.get("bamboo_user_agent"),
@@ -17,7 +17,7 @@ async function getTimesheet() {
             "Cache-Control": "no-cache",
             "Cookie": Deno.env.get("bamboo_cookie")
         },
-        "referrer": `https://unith.bamboohr.com/employees/timesheet/?id=${Deno.env.get("bamboo_employee_id")}`,
+        "referrer": urlBase + "/employees/timesheet/?id=" + Deno.env.get("bamboo_employee_id"),
         "method": "GET",
         "mode": "cors"
     });
@@ -44,7 +44,7 @@ async function addTimeEntry({ day, start, end }) {
             "X-CSRF-TOKEN": Deno.env.get("bamboo_x_csrf_token"),
             "Cookie": Deno.env.get("bamboo_cookie")
         },
-        "referrer": "https://unith.bamboohr.com/employees/timesheet/?id=" + Deno.env.get("bamboo_employee_id"),
+        "referrer": urlBase + "/employees/timesheet/?id=" + Deno.env.get("bamboo_employee_id"),
         "body": "{\"entries\":[{\"id\":null,\"trackingId\":1,\"employeeId\":" + parseInt(Deno.env.get("bamboo_employee_id")) + ",\"date\":\"" + day + "\",\"start\":\"" + start + "\",\"end\":\"" + end + "\",\"note\":\"\",\"projectId\":null,\"taskId\":null}]}",
         "method": "POST",
         "mode": "cors"
