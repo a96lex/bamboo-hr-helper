@@ -4,7 +4,7 @@ import helpers from "./helpers.js";
 console.log("BambooHR automatic time entry");
 console.log("📆 Getting past month times");
 
-const times = await api.getPastMonthTimes()
+const times = await api.getTimesheet()
 const days = helpers.parseDates(times)
 
 days.forEach(async day => {
