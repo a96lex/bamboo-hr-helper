@@ -49,6 +49,7 @@ Create and fill a `.env` file, following the given `.env.example` file
 
 To find the `.env` variables:
 
+- bamboo_url. This is the companie's subdomain in bambooHR, you can get it from the browser. `https://example.bamboohr.com`
 - Go to BambooHR and open the network tab.
 - perform a POST request (for example, add a time entry)
 - check the request headers. There you will find the `Cookie`, `X-CSRF-TOKEN` and `User-Agent` headers. Put the values in your `.env`
@@ -57,6 +58,7 @@ To find the `.env` variables:
 ![browser](img/browser.png)
 
 **Note**: I do not know when do this variables expire. If something does not work, you may need to get them again.
+
 
 ### running the software
 
