@@ -59,6 +59,23 @@ To find the `.env` variables:
 
 **Note**: I do not know when do this variables expire. If something does not work, you may need to get them again.
 
+### Configuration options
+
+There are no configurations available from `.env` besides auth or server variables. However, you can go into the code and easily change a couple of things:
+
+#### Change wait time between requestrs
+
+In `index.js` you can comment the calls to `wait`. This will make it so all requests happen at the same time, instead of waiting a random amount of time between requests. I do not recommend this as it may trigger some kind of security measure.
+
+You can also edit the time between requests if you want to. It is now set to 20-30 seconds.
+
+#### Do not add time entries for today
+
+In `helpers.js`, in the `parseDates` function, we check if the current day is greater than today. This makes it so we add a time entry for today, even though the day is not finished. You can easily avoid this by changing the `>` to `>=`.
+
+#### Change the randomizer algorithm
+
+This schedule is centered on starting around 9 ± 0.5 hours and ending around 18 ± 0.25 hours. You can change this by editing the `getRandomTime` function in `helpers.js`. Feel free to ask if something is not clear.
 
 ### running the software
 
