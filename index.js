@@ -17,12 +17,12 @@ for (const [idx, day] of days.entries()) {
     const { start_morning, end_morning, start_afternoon, end_afternoon } = helpers.getRandomTimes();
 
     console.log("⏰ Clocking in and out for " + day + " from " + start_morning + " to " + end_morning);
-    await api.addTimeEntry({ day, start_morning, end_morning });
+    await api.addTimeEntry({ day, start: start_morning, end: end_morning });
 
     await wait(20000 + 10000 * Math.random());
 
     console.log("⏰ Clocking in and out for " + day + " from " + start_afternoon + " to " + end_afternoon);
-    await api.addTimeEntry({ day, start_afternoon, end_afternoon });
+    await api.addTimeEntry({ day, start: start_afternoon, end: end_afternoon });
 
     // No need to wait after the last day
     if (idx !== days.length - 1) {
